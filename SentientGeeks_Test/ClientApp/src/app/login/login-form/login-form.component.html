@@ -1,0 +1,14 @@
+
+
+<form [formGroup]="loginform" (ngSubmit)="getlogin()">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" formControlName="txt_EMAIL" [class.error-field-red]="this.loginform.controls.txt_EMAIL.invalid && this.loginform.controls.txt_EMAIL.touched"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" formControlName="txt_PASSWORD"  [class.error-field-red]="this.loginform.controls.txt_EMAIL.invalid && this.loginform.controls.txt_EMAIL.touched"  id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <br />
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

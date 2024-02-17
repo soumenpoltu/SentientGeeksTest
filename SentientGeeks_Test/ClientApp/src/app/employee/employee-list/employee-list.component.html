@@ -1,0 +1,58 @@
+
+<div class="container">
+  <div class="row header">
+    <div class="col-10">
+      <h1>Manage Employees</h1>
+    </div><div class="col-1 button-area">
+      <button type='button' class='btn btn-danger' (click)="DeleteMultipleData()">Delete</button>
+    </div>
+    <div class="col-1 button-area">
+      <button type='button' class='btn btn-primary' (click)="showEmployeeAdd()">Add</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 p-0">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Select</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employeeList">
+            <td>
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input"  value="{{employee.MAST_EMPLOYEE_KEY}}" (change)="selectEmployeeKey($event)" id="customCheck-{{employee.MAST_EMPLOYEE_KEY}}">
+                <label class="custom-control-label" for="customCheck-{{employee.MAST_EMPLOYEE_KEY}}"></label>
+              </div>
+            </td>
+            <td>{{employee.FULLNAME}}</td> 
+            <td>{{employee.EMAIL}}</td> 
+            <td>{{employee.ADDRESS}}</td> 
+            <td>{{employee.PHONE}}</td> 
+            <td>
+              <fa-icon [icon]="faPencil" (click)="showModalEdit(employee.MAST_EMPLOYEE_KEY)" class="cursorModify"></fa-icon>
+              &nbsp;
+              &nbsp;
+              <fa-icon [icon]="faTrash" (click)="EmployeeDelete(employee.MAST_EMPLOYEE_KEY)" class="cursorModify"></fa-icon>
+
+              <!--<fa name="trash" animation="trash"></fa>-->
+            </td> 
+          </tr>
+        
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<app-employee-add #employeeAdd (successMsg)="getAllList($event)"></app-employee-add>
